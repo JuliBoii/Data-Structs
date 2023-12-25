@@ -74,6 +74,12 @@ int main() {
     myLinkedList->printList();
     std::cout << std::endl;
 
+    myLinkedList->reverse();
+
+    std::cout << "Linked List:\n";
+    myLinkedList->printList();
+    std::cout << std::endl;
+    
     delete myLinkedList;
 
     return 0;

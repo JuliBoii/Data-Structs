@@ -187,4 +187,15 @@ void LinkedList::reverse() {
     Node* temp = head;
     head = tail;
     tail = temp;
+
+    Node* prevNode = nullptr;
+    Node* nextNode = temp->next;
+
+    for (int i = 0; i < length; i++) {
+        nextNode = temp->next;
+        temp->next = prevNode;
+        prevNode = temp;
+        temp = nextNode;
+    }
+
 }
