@@ -59,6 +59,8 @@ int main() {
     myLinkedList->printList();
     std::cout << std::endl;
 
+    std::cout << "MIDDLE: " << myLinkedList->middle()->value << std::endl;
+
     myLinkedList->deleteNode(0);
     std::cout << "Linked List:\n";
     myLinkedList->printList();
@@ -79,6 +81,8 @@ int main() {
     std::cout << "Linked List:\n";
     myLinkedList->printList();
     std::cout << std::endl;
+
+    std::cout << "MIDDLE: " << myLinkedList->findMiddleNode()->value << std::endl;
     
     delete myLinkedList;
 

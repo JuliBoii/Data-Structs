@@ -44,6 +44,10 @@ public:
     void getLength() const;
 
     void reverse();
+
+    Node* findMiddleNode() const;
+
+    Node* middle() const;
 };
 
 #endif //STRUCTSCPP_LINKEDLIST_H

@@ -199,3 +199,32 @@ void LinkedList::reverse() {
     }
 
 }
+
+Node* LinkedList::findMiddleNode() const {
+    if(length == 0) return nullptr;
+
+    const int half = length / 2;
+    Node* temp = head;
+
+    for (int i = 0; i < half; ++i) {
+        temp = temp->next;
+    }
+    return temp;
+}
+
+Node* LinkedList::middle() const {
+    Node* slow = head;
+    Node* fast = head;
+
+    if (slow == nullptr) return nullptr;
+
+    if (slow->next == nullptr) return slow;
+
+    while(fast != nullptr) {
+        if (fast->next == nullptr) break;
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return slow;
+}
