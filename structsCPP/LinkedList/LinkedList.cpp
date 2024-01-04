@@ -228,3 +228,21 @@ Node* LinkedList::middle() const {
 
     return slow;
 }
+
+bool LinkedList::hasLoop() const {
+    if (head == nullptr) return false;
+    if (head->next == nullptr) return false;
+
+    Node* slow = head;
+    Node* fast = head;
+
+    while (fast != nullptr) {
+        slow = slow->next;
+        fast = fast->next->next;
+
+        if (slow == fast) return true;
+    }
+
+    return false;
+}
+

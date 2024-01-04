@@ -48,6 +48,8 @@ public:
     Node* findMiddleNode() const;
 
     Node* middle() const;
+
+    bool hasLoop() const;
 };
 
 #endif //STRUCTSCPP_LINKEDLIST_H
