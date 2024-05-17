@@ -1,7 +1,9 @@
 .fleet/
 .cache/
+__pycache__/
 .idea/
 .venv/
 
 *.pyc
+*.pyo
 cmake-build-debug/
