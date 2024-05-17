@@ -3,4 +3,5 @@
 .idea/
 .venv/
 
+*.pyc
 cmake-build-debug/

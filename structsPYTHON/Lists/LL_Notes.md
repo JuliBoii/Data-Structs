@@ -91,3 +91,19 @@ In order to do this:
 - then we can delete _currN_ to remove it from the list
 
 Since we have to iterate the whole list, this operation will also be **O(n)**.
+
+---
+
+### Creating Nodes
+
+All of the following methods for the LL class have an action that creates a new node:
+
+- `__init__`
+- `append()`
+- `prepend()`
+- `insert()`
+
+Rather than repeating the code to create a new node, we will make a class
+that does nothing but make Nodes
+
+---
