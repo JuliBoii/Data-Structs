@@ -1,7 +1,7 @@
 #ifndef STRUCTSCPP_LINKEDLIST_H
 #define STRUCTSCPP_LINKEDLIST_H
 
-#include "Node.h"
+#include "../Node/Node.h"
 
 class LinkedList {
     Node* head;
