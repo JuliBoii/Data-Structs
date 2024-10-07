@@ -9,8 +9,16 @@
 #include "../Node/Node.h"
 
 class Stack {
-    private:
-        Node *top;
+    Node *top;
+    int size{0};
+public:
+    Stack();
+    explicit Stack(const int& value);
+    void push(const int& value);
+    int pop();
+    void print() const;
+    int getTop() const;
+    int getSize() const;
 };
 
 
