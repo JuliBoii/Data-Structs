@@ -17,7 +17,12 @@ public:
   Queue();
   explicit Queue(const int& value);
   ~Queue();
-
+  void print() const;
+  void enqueue(const int& value);
+  int dequeue();
+  int getFirst() const;
+  int getLast() const;
+  int getSize() const;
 };
 
 

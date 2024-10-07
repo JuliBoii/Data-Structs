@@ -3,6 +3,7 @@
 //
 #include <iostream>
 
+#include "Queue.hpp"
 #include "Stack.hpp"
 
 int main() {
@@ -19,6 +20,30 @@ int main() {
     std::cout << "Popped element: " << myStack->pop() << '\n';
     std::cout << "Popped element: " << myStack->pop() << '\n';
     std::cout << "Popped element: " << myStack->pop() << '\n';
+
+    delete myStack;
+
+    std::cout << "\n\n";
+
+    Queue* myQueue = new Queue(38);
+
+    myQueue->enqueue(42);
+    myQueue->enqueue(2);
+
+    std::cout << "Printing first in queue: " << myQueue->getFirst() << '\n';
+    std::cout << "Printing last in queue: " << myQueue->getLast() << '\n';
+    std::cout << "Size of Queue: " << myQueue->getSize() << '\n';
+
+    std::cout << "Printing queue:\n";
+    myQueue->print();
+    std::cout << '\n';
+
+    std::cout << "Dequeued element: " << myQueue->dequeue() << '\n';
+    std::cout << "Dequeued element: " << myQueue->dequeue() << '\n';
+    std::cout << "Dequeued element: " << myQueue->dequeue() << '\n';
+    std::cout << "Dequeued element: " << myQueue->dequeue() << '\n';
+    myQueue->enqueue(-32);
+    myQueue->enqueue(71392);
 
     return 0;
 }

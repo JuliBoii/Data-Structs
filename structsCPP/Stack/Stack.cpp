@@ -3,8 +3,9 @@
 //
 
 #include "Stack.hpp"
-#include <limits>
 
+#include <climits>
+#include <iostream>
 
 Stack::Stack() {
     this->top = nullptr;
