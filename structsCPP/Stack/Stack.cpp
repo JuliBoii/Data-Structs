@@ -16,6 +16,16 @@ Stack::Stack(const int &value) {
     size = 1;
 }
 
+Stack::~Stack() {
+    Node* temp = top;
+    while (temp) {
+        top = temp->next;
+        delete temp;
+        temp = top;
+    }
+}
+
+
 void Stack::push(const int &value) {
     Node* newNode = new Node(value);
     newNode->next = top;

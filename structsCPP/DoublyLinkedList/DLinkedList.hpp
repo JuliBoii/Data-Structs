@@ -14,7 +14,8 @@ class DLinkedList {
 
 public:
   DLinkedList();
-  DLinkedList(int value);
+  explicit DLinkedList(int value);
+  ~DLinkedList();
   void prepend(const int& value);
   void append(const int& value);
   bool insert(const int& index, const int& value);

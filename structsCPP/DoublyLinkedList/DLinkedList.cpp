@@ -19,6 +19,16 @@ DLinkedList::DLinkedList(int value) {
     length = 1;
 }
 
+DLinkedList::~DLinkedList() {
+    Node_D* temp = head;
+    while (temp) {
+        head = head->next;
+        delete temp;
+        temp = head;
+    }
+}
+
+
 void DLinkedList::prepend(const int& value) {
     Node_D* newNode = new Node_D(value);
     if (head == nullptr) {

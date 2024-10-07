@@ -14,6 +14,7 @@ class Stack {
 public:
     Stack();
     explicit Stack(const int& value);
+    ~Stack();
     void push(const int& value);
     int pop();
     void print() const;
