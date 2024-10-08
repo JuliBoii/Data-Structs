@@ -8,12 +8,11 @@
 
 
 class TreeNode {
+public:
     int value;
     TreeNode *left;
     TreeNode *right;
-
-    public:
-      TreeNode(const int& value);
+    TreeNode(const int& value);
 };
 
 
