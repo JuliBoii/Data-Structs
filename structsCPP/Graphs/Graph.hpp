@@ -6,10 +6,10 @@
 #define GRAPH_HPP
 
 
-#include <unordered_map>
-#include <unordered_set>
 #include <iostream>
 #include <string>
+#include <unordered_map>
+#include <unordered_set>
 
 
 class Graph {
@@ -17,10 +17,10 @@ class Graph {
 
     public:
     void print() const;
-    bool addVertex(std::string vertex);
-    bool addEdge(std::string vertex1, std::string vertex2);
-    bool removeEdge(std::string vertex1, std::string vertex2);
-    bool removeVertex(std::string vertex);
+    bool addVertex(const std::string &vertex);
+    bool addEdge(const std::string &vertex1, const std::string &vertex2);
+    bool removeEdge(const std::string &vertex1, const std::string &vertex2);
+    bool removeVertex(const std::string &vertex);
 };
 
 

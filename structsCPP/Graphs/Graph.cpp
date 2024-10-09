@@ -3,7 +3,7 @@
 //
 
 
-#include <string_view>
+
 #include "Graph.hpp"
 
 
@@ -17,7 +17,7 @@ void Graph::print() const {
     }
 }
 
-bool Graph::addVertex(std::string vertex) {
+bool Graph::addVertex(const std::string &vertex) {
     if (adjList.count(vertex) == 0) {
         adjList[vertex];
         return true;
@@ -25,7 +25,7 @@ bool Graph::addVertex(std::string vertex) {
     return false;
 }
 
-bool Graph::addEdge(std::string vertex1, std::string vertex2) {
+bool Graph::addEdge(const std::string &vertex1, const std::string &vertex2) {
     if (adjList.count(vertex1) != 0 && adjList.count(vertex2) != 0) {
         adjList.at(vertex1).insert(vertex2);
         adjList.at(vertex2).insert(vertex1);
@@ -34,7 +34,7 @@ bool Graph::addEdge(std::string vertex1, std::string vertex2) {
     return false;
 }
 
-bool Graph::removeEdge(std::string vertex1, std::string vertex2) {
+bool Graph::removeEdge(const std::string &vertex1, const std::string &vertex2) {
     if (adjList.count(vertex1) != 0 && adjList.count(vertex2) != 0) {
         adjList.at(vertex1).erase(vertex2);
         adjList.at(vertex2).erase(vertex1);
@@ -43,7 +43,7 @@ bool Graph::removeEdge(std::string vertex1, std::string vertex2) {
     return false;
 }
 
-bool Graph::removeVertex(std::string vertex) {
+bool Graph::removeVertex(const std::string &vertex) {
     if (adjList.count(vertex) != 0) {
         for (const auto& otherVertex : adjList.at(vertex)) {
             adjList.at(otherVertex).erase(vertex);
