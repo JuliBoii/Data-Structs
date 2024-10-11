@@ -59,7 +59,7 @@ print("dict2 =", dict2)
 # memory address, despite only changing
 # the 'value' for dict2
 # Dictionaries can be changed
-# Additionally, dict1['value'] also hase the
+# Additionally, dict1['value'] also has the
 # same information as dict2['value']
 print("\ndict1 points to:", id(dict1))
 print("dict2 points to:", id(dict2))
