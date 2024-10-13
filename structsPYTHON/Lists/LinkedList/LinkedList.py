@@ -149,4 +149,19 @@ class LinkedList:
     def get_length(self) -> int:
         return self.length
 
+    def reverse(self) -> None:
+        if self.length <= 1:
+            return None
+
+        temp_node = self.head
+        self.tail = self.head
+        previous_node = None
+        while temp_node is not None:
+            next_node = temp_node.next
+            temp_node.next = previous_node
+            previous_node = temp_node
+            temp_node = next_node
+        self.head = previous_node
+
+
 

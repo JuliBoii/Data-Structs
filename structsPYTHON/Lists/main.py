@@ -64,3 +64,13 @@ if __name__ == "__main__":
 
     print("\nRemoving node at index 11...")
     print(f"Was Node at index 11 removed: {linked_list.remove_node(11)}")
+
+    print(f"Printing Head before Reverse: {linked_list.get_head()}")
+    print(f"Printing Tail before Reverse: {linked_list.get_tail()}")
+
+    print("\nReversing List...")
+    linked_list.reverse()
+    print(f"Printing Head: {linked_list.get_head()}")
+    print(f"Printing Tail: {linked_list.get_tail()}")
+    print("Printing List after reversing List...")
+    linked_list.print()
