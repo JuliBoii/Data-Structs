@@ -1,6 +1,3 @@
-from typing import Any
-
-
 class Node:
     def __init__(self, value):
         self.value = value
@@ -38,17 +35,22 @@ class LinkedList:
         self.length += 1
 
     def insert(self, index, value) -> bool:
-        if index < 0 or index > self.length:
-            return False
-        if self.length == 0:
+        if index == 0:
             self.prepend(value)
             return True
         if index == self.length - 1:
             self.append(value)
             return True
 
-        new_node = Node(value)
-        # temp =
+        prev_node = self.get_node(index - 1)
+        if prev_node is not None:
+            new_node = Node(value)
+            new_node.next = prev_node.next
+            prev_node.next = new_node
+            self.length += 1
+            return True
+
+        return False
 
     def pop_first(self) -> Node | None:
         if self.length == 0:
@@ -85,10 +87,28 @@ class LinkedList:
         self.length -= 1
         return temp_node
 
-    def remove(self, index): # deleteNode
-        pass
+    def remove_node(self, index) -> bool: # deleteNode
+        if index == 0:
+            temp_node = self.pop_first()
+            del temp_node
+            return True
+        if index == self.length - 1:
+            temp_node = self.pop()
+            del temp_node
+            return True
 
-    def print(self) -> None | Any:
+        previous_node = self.get_node(index - 1)
+        if previous_node is not None:
+            temp_node = previous_node.next
+            previous_node.next = temp_node.next
+            temp_node.next = None
+            del temp_node
+            self.length -= 1
+            return True
+
+        return False
+
+    def print(self) -> None:
         if self.length == 0:
             print("List is empty")
             return
@@ -99,8 +119,12 @@ class LinkedList:
             print(f"{temp.value}")
             temp = temp.next
 
-    def set_value(self, index, value) -> None:
-        pass
+    def set_value(self, index, value) -> bool:
+        pre_updated_node = self.get_node(index)
+        if pre_updated_node is not None:
+            pre_updated_node.value = value
+            return True
+        return False
 
     def get_node(self, index) -> Node | None:
         if self.length == 0:
