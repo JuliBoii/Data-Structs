@@ -17,8 +17,8 @@ if __name__ == "__main__":
     linked_list.print()
 
     print("\nPopping two Nodes...")
-    linked_list.pop()
-    linked_list.pop()
+    print(f"Popped: {linked_list.pop().value}")
+    print(f"Popped: {linked_list.pop().value}")
 
     print("Prepending two Nodes...")
     linked_list.prepend(25)
@@ -28,9 +28,9 @@ if __name__ == "__main__":
     linked_list.print()
 
     print("\nPopping three Nodes from beginning of List...")
-    linked_list.pop_first()
-    linked_list.pop_first()
-    linked_list.pop_first()
+    print(f"Popped: {linked_list.pop_first().value}")
+    print(f"Popped: {linked_list.pop_first().value}")
+    print(f"Popped: {linked_list.pop_first().value}")
 
     print("Updating a Node in the list...")
     print(f"Did Node, index 2, update: {linked_list.set_value(2, 42)}")
