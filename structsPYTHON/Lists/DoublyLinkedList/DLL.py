@@ -138,6 +138,6 @@ class DoublyLinkedList:
         count = 0
         temp = self.head
         while count < self.length:
-            print(temp)
+            print(temp.value)
             temp = temp.next
             count += 1
