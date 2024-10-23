@@ -74,3 +74,5 @@ if __name__ == "__main__":
     print(f"Printing Tail: {linked_list.get_tail()}")
     print("Printing List after reversing List...")
     linked_list.print()
+
+    print(f"Middle Node value is: {linked_list.find_middle_node().value}")
