@@ -74,3 +74,10 @@ if __name__ == "__main__":
     print(f"Printing Tail: {myDLL.get_tail()}")
     print("Printing List after reversing List...")
     myDLL.print_list()
+
+    print("\nSwaping Head & Tail values in List...")
+    print(f"Before Swap Head: {myDLL.get_head()}")
+    print(f"Before Swap Tail: {myDLL.get_tail()}")
+    myDLL.swap_first_last()
+    print(f"After Swap Head: {myDLL.get_head()}")
+    print(f"After Swap Tail: {myDLL.get_tail()}")

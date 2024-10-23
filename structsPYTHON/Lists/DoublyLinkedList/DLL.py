@@ -169,6 +169,20 @@ class DoublyLinkedList:
 
         return False
 
+    def swap_first_last(self) -> None:
+        if self.is_empty():
+            return
+
+        if self.length == 1:
+            return
+
+        head_value = self.get_head()
+        tail_value = self.get_tail()
+
+        self.head.value = tail_value
+        self.tail.value = head_value
+
+
     # def reverse(self):
     #     if self.length < 2:
     #         return
