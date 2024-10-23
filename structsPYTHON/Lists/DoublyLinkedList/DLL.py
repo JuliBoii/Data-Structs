@@ -4,6 +4,7 @@ class Node:
         self.next = None
         self.previous = None
 
+
 # Doubly Linked List
 class DoublyLinkedList:
     def __init__(self, value):
@@ -16,7 +17,6 @@ class DoublyLinkedList:
         if self.length == 0:
             return True
         return False
-
 
     def prepend(self, value) -> None:
         new_node = Node(value)
@@ -84,30 +84,39 @@ class DoublyLinkedList:
         if self.is_empty():
             return None
 
-        count = 0
-        temp = self.head
-        while count < index:
-            temp = temp.next
-            count += 1
+        if index < int(self.length / 2):
+            temp_node = self.head
+            count = 0
+            while count < index:
+                temp_node = temp_node.next
+                count += 1
+            return temp_node
+        else:
+            temp_node = self.tail
+            count = self.length - 1
+            while count > index:
+                temp_node = temp_node.previous
+                count -= 1
+            return temp_node
 
-        return temp
 
     def insert(self, index, value) -> bool:
         if index == 0:
             self.prepend(value)
             return True
-        if index == self.length - 1:
+        if index == self.length:
             self.append(value)
             return True
 
-        prev_node = self.get_node(index - 1)
-        if prev_node:
+        before_node = self.get_node(index - 1)
+
+        if before_node:
             new_node = Node(value)
-            temp = prev_node.next
-            new_node.next = temp
-            new_node.previous = prev_node
-            prev_node.next = new_node
-            temp.previous = new_node
+            after_node = before_node.next
+            new_node.next = after_node
+            new_node.previous = before_node
+            before_node.next = new_node
+            after_node.previous = new_node
             self.length += 1
             return True
 
@@ -122,14 +131,16 @@ class DoublyLinkedList:
 
         removed_node = self.get_node(index - 1)
         if removed_node:
-            removed_node.next.previous = removed_node.previous
-            removed_node.previous.next = removed_node.next
+            before_node = removed_node.previous
+            after_node = removed_node.next
             removed_node.next = None
             removed_node.previous = None
+            before_node.next = after_node
+            after_node.previous = before_node
             self.length -= 1
             return removed_node
 
-        return removed_node
+        return None
 
     def print_list(self):
         if self.is_empty():
@@ -141,3 +152,28 @@ class DoublyLinkedList:
             print(temp.value)
             temp = temp.next
             count += 1
+
+    def get_head(self) -> int:
+        return self.head.value
+
+    def get_tail(self) -> int:
+        return self.tail.value
+
+    def set_value(self, index, value) -> bool:
+        if self.is_empty() is not True:
+            temp_node = self.get_node(index)
+            if temp_node:
+                temp_node.value = value
+                return True
+            return False
+
+        return False
+
+    # def reverse(self):
+    #     if self.length < 2:
+    #         return
+    #
+    #     count = 0
+    #     while count < self.length:
+    #
+    #         count += 1
