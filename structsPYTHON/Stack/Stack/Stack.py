@@ -13,10 +13,26 @@ class Stack:
         self.height = 1
 
     def push(self, value) -> None:
-        pass
+        new_node = Node(value)
+        if self.is_empty() is not True:
+            new_node.next = self.top
+
+        self.top = new_node
+        self.height += 1
+
 
     def pop(self) -> Node | None:
-        pass
+        if self.is_empty():
+            return None
+
+        removed_node = self.top
+        if self.height == 1:
+            self.top = None
+        else:
+            self.top = removed_node.next
+
+        self.height -= 1
+        return removed_node
 
     def is_empty(self) -> bool:
         if self.height == 0:
@@ -25,6 +41,7 @@ class Stack:
 
     def print(self) -> None:
         if self.is_empty():
+            print("Stack is empty!")
             return
 
         temp = self.top
@@ -33,7 +50,7 @@ class Stack:
             temp = temp.next
 
     def get_top(self) -> int:
-        pass
+        return self.top.value
 
     def get_height(self) -> int:
-        pass
+        return self.height
