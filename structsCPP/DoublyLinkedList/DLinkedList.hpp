@@ -14,20 +14,34 @@ class DLinkedList {
 
 public:
   DLinkedList();
-  explicit DLinkedList(int value);
+
+  explicit DLinkedList(const int& value);
+
   ~DLinkedList();
+
   void prepend(const int& value);
+
   void append(const int& value);
+
   bool insert(const int& index, const int& value);
+
+  bool setNode(const int& index, const int& value);
+
   void deleteFirst();
+
   void deleteLast();
+
   void deleteNode(const int& index);
+
   void printList() const;
+
   Node_D *getNode(const int& index) const;
-  void getLength() const;
-  void getHeadValue() const;
-  void getTailValue() const;
-  bool setNode(const int& index, const int& value) const;
+
+  int getLength() const;
+
+  Node_D* getHead() const;
+
+  Node_D* getTail() const;
 };
 
 
