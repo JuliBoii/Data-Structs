@@ -12,36 +12,36 @@ public:
     LinkedList();
 
     // Creates the list and inits the first node
-    explicit LinkedList(int value);
+    explicit LinkedList(const int& value);
 
     ~LinkedList();
 
     // creates a node and adds it to the end of list
-    void append(const int&value);
+    void append(const int& value);
 
     // creates a node and adds it to the beginning of list
-    void prepend(const int&value);
+    void prepend(const int& value);
 
     void removeFirst();
 
     void removeLast();
 
     // creates a node and inserts it at a certain position
-    bool insert(const int&index, const int&value);
+    bool insert(const int& index, const int& value);
 
-    bool setNode(const int&index, const int&value);
+    bool setNode(const int& index, const int& value);
 
-    void deleteNode(const int&index);
+    void deleteNode(const int& index);
 
     void printList() const;
 
-    Node* getNode(const int&index) const;
+    Node* getNode(const int& index) const;
 
-    void getHead() const;
+    Node* getHead() const;
 
-    void getTail() const;
+    Node* getTail() const;
 
-    void getLength() const;
+    int getLength() const;
 
     void reverse();
 

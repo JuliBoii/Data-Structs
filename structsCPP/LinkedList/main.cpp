@@ -1,89 +1,93 @@
 #include "LinkedList.h"
+#include <string_view>
 #include <iostream>
 
 int main() {
     auto* myLinkedList = new LinkedList(4);
 
-    myLinkedList->getHead();
-    myLinkedList->getTail();
-    myLinkedList->getLength();
+    std::cout << "Head: " << myLinkedList->getHead()->value << '\n';
+    std::cout << "Tail: " << myLinkedList->getTail()->value << '\n';
+    std::cout << "Length: " << myLinkedList->getLength() << '\n';
 
-    std::cout << "\nLinked List:\n";
+    std::cout << "Printing List...\n";
     myLinkedList->printList();
-    std::cout << std::endl;
 
+    std::cout << "\n\nAppending 3 new nodes to list...\n";
     myLinkedList->append(5);
     myLinkedList->append(15);
     myLinkedList->append(13);
+
+    std::cout << "Prepending a node to list...\n";
     myLinkedList->prepend(10);
 
-    myLinkedList->getHead();
-    myLinkedList->getTail();
-    myLinkedList->getLength();
+    std::cout << "Head: " << myLinkedList->getHead()->value << '\n';
+    std::cout << "Tail: " << myLinkedList->getTail()->value << '\n';
+    std::cout << "Length: " << myLinkedList->getLength() << '\n';
 
-    std::cout << "\nLinked List:\n";
+    std::cout << "Printing List...\n";
     myLinkedList->printList();
-    std::cout << std::endl;
 
+    std::cout << "\n\nRemoving a node from the end of list...\n";
     myLinkedList->removeLast();
+    std::cout << "Removing a node from the beginning of list...\n";
     myLinkedList->removeFirst();
 
-    myLinkedList->getHead();
-    myLinkedList->getTail();
-    myLinkedList->getLength();
+    std::cout << "Head: " << myLinkedList->getHead()->value << '\n';
+    std::cout << "Tail: " << myLinkedList->getTail()->value << '\n';
+    std::cout << "Length: " << myLinkedList->getLength() << '\n';
 
-
-    std::cout << "\nLinked List:\n";
+    std::cout << "Printing List...\n";
     myLinkedList->printList();
-    std::cout << std::endl;
 
-    myLinkedList->insert(3, 45);
-    myLinkedList->insert(1, 5);
-    myLinkedList->insert(2, 35);
+    std::cout << "\n\nInserting 3 new nodes...\n";
 
-    myLinkedList->getHead();
-    myLinkedList->getTail();
-    myLinkedList->getLength();
+    std::string_view result = myLinkedList->insert(3, 45) ? "True" : "False";
+    std::cout << "Insert at index '3' successful? " << result << '\n';
 
-    std::cout << "\nLinked List:\n";
+    result = myLinkedList->insert(1, 5) ? "True" : "False";
+    std::cout << "Insert at index '1' successful? " << result << '\n';
+
+    result = myLinkedList->insert(6, 35) ? "True" : "False";
+    std::cout << "Insert at index '6' successful? " << result << '\n';
+
+    std::cout << "Head: " << myLinkedList->getHead()->value << '\n';
+    std::cout << "Tail: " << myLinkedList->getTail()->value << '\n';
+    std::cout << "Length: " << myLinkedList->getLength() << '\n';
+
+    std::cout << "Printing List...\n";
     myLinkedList->printList();
-    std::cout << std::endl;
 
-    std::cout << myLinkedList->getNode(5)->value << std::endl;
+    std::cout << "\n\nRetrieving node at index '3': " << myLinkedList->getNode(3)->value << '\n';
 
-    myLinkedList->getLength();
+    std::cout << "Changing the value for index '1': ";
+    result = myLinkedList->setNode(1, 83) ? "True" : "False";
+    std::cout << result << '\n';
+    std::cout << "Node at the middle of List is: " << myLinkedList->middle()->value << std::endl;
 
-    myLinkedList->setNode(1, 83);
-
-    std::cout << "\nLinked List:\n";
+    std::cout << "Printing List...\n";
     myLinkedList->printList();
-    std::cout << std::endl;
 
-    std::cout << "MIDDLE: " << myLinkedList->middle()->value << std::endl;
-
-    myLinkedList->deleteNode(0);
-    std::cout << "Linked List:\n";
-    myLinkedList->printList();
-    std::cout << std::endl;
-
-    myLinkedList->deleteNode(4);
-    std::cout << "Linked List:\n";
-    myLinkedList->printList();
-    std::cout << std::endl;
-
-    myLinkedList->deleteNode(2);
-    std::cout << "Linked List:\n";
-    myLinkedList->printList();
-    std::cout << std::endl;
-
+    std::cout << "\n\nReversing the list...\n";
     myLinkedList->reverse();
 
-    std::cout << "Linked List:\n";
+    std::cout << "Printing List...\n";
     myLinkedList->printList();
-    std::cout << std::endl;
 
-    std::cout << "MIDDLE: " << myLinkedList->findMiddleNode()->value << std::endl;
-    
+    std::cout << "\n\nDeleting a node at index '4':\n";
+    myLinkedList->deleteNode(4);
+    std::cout << "Printing List...\n";
+    myLinkedList->printList();
+
+    std::cout << "\n\nDeleting a node at index '0':\n";
+    myLinkedList->deleteNode(0);
+    std::cout << "Printing List...\n";
+    myLinkedList->printList();
+
+    std::cout << "\n\nDeleting a node at index '2':\n";
+    myLinkedList->deleteNode(2);
+    std::cout << "Printing List...\n";
+    myLinkedList->printList();
+
     delete myLinkedList;
 
     return 0;

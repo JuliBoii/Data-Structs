@@ -3,134 +3,133 @@
 #include <iostream>
 
 LinkedList::LinkedList() {
-    head = nullptr;
-    tail = nullptr;
-    length = 0;
+    this->head = nullptr;
+    this->tail = nullptr;
+    this->length = 0;
 }
 
-LinkedList::LinkedList(int value) {
+LinkedList::LinkedList(const int& value) {
     Node* newNode = new Node(value);
-    head = newNode;
-    tail = newNode;
-    length = 1;
+    this->head = newNode;
+    this->tail = newNode;
+    this->length = 1;
 }
 
 LinkedList::~LinkedList() {
-    Node* temp = head;
-    while (head) {
-        head = head->next;
+    Node* temp = this->head;
+    while (this->head) {
+        this->head = this->head->next;
         delete temp;
-        temp = head;
+        temp = this->head;
     }
+    this->tail = nullptr;
+    this->length = 0;
 }
 
-void LinkedList::append(const int&value) {
+void LinkedList::append(const int& value) {
     Node* newNode = new Node(value);
 
-    if (length == 0) {
-        head = newNode;
-        tail = newNode;
+    if (this->length == 0) {
+        this->head = newNode;
+        this->tail = newNode;
     }
     else {
-        tail->next = newNode;
-        tail = newNode;
+        this->tail->next = newNode;
+        this->tail = newNode;
     }
-    length++;
+    this->length++;
 }
 
-void LinkedList::prepend(const int&value) {
+void LinkedList::prepend(const int& value) {
     Node* newNode = new Node(value);
 
-    if (length == 0) {
-        head = newNode;
-        tail = newNode;
+    if (this->length == 0) {
+        this->head = newNode;
+        this->tail = newNode;
     }
     else {
-        newNode->next = head;
-        head = newNode;
+        newNode->next = this->head;
+        this->head = newNode;
     }
-    length++;
+    this->length++;
 }
 
-bool LinkedList::insert(const int&index, const int&value) {
-    if (index < 0 || index > length) return false;
+bool LinkedList::insert(const int& index, const int& value) {
+    if (index < 0 || index > this->length) { return false; }
+
     if (index == 0) {
-        prepend(value);
+        this->prepend(value);
         return true;
     }
-    if (index == length) {
-        append(value);
+
+    if (index == this->length) {
+        this->append(value);
         return true;
     }
 
     Node* newNode = new Node(value);
-    Node* temp = getNode(index - 1);
+    Node* temp = this->getNode(index - 1);
 
     newNode->next = temp->next;
     temp->next = newNode;
 
-    length++;
+    this->length++;
     return true;
 }
 
-bool LinkedList::setNode(const int&index, const int&value) {
-    if (Node* temp = getNode(index)) {
+bool LinkedList::setNode(const int& index, const int& value) {
+    Node* temp = this->getNode(index);
+    if (temp) {
         temp->value = value;
         return true;
     }
     return false;
 }
 
-void LinkedList::deleteNode(const int&index) {
-    if (index < 0 || index >= length) return;
+void LinkedList::deleteNode(const int& index) {
+    if (index < 0 || index >= this->length) return;
 
-    if (index == 0) return removeFirst();
+    if (index == 0) return this->removeFirst();
 
-    if (index == length - 1) return removeLast();
+    if (index == this->length - 1) return this->removeLast();
 
-    Node* prevNode = getNode(index - 1);
+    Node* prevNode = this->getNode(index - 1);
     Node* temp = prevNode->next;
-
     prevNode->next = temp->next;
 
-    std::cout << "Removed: " << temp->value << std::endl;
-    std::cout << std::endl;
     delete temp;
-
-    length--;
+    this->length--;
 }
 
 
 void LinkedList::removeFirst() {
-    if (length == 0) {
-        std::cout << "List is Empty!" << std::endl;
+    if (this->length == 0) {
         return;
     }
-    Node* temp = head;
-    if (length == 1) {
-        head = nullptr;
-        tail = nullptr;
+
+    Node* temp = this->head;
+
+    if (this->length == 1) {
+        this->head = nullptr;
+        this->tail = nullptr;
     }
     else {
-        head = head->next;
+        this->head = this->head->next;
     }
-    std::cout << "Removed: " << temp->value << std::endl;
-    std::cout << std::endl;
 
     delete temp;
-    length--;
+    this->length--;
 }
 
 
 void LinkedList::removeLast() {
-    if (length == 0) {
-        std::cout << "List is Empty!" << std::endl;
-        return;
-    }
-    Node* temp = head;
-    if (length == 1) {
-        head = nullptr;
-        tail = nullptr;
+    if (this->length == 0) { return; }
+
+    Node* temp = this->head;
+
+    if (this->length == 1) {
+        this->head = nullptr;
+        this->tail = nullptr;
     }
     else {
         Node* prevNode = temp;
@@ -141,52 +140,55 @@ void LinkedList::removeLast() {
         tail = prevNode;
         tail->next = nullptr;
     }
-    std::cout << "Removed: " << temp->value << std::endl;
-    std::cout << std::endl;
 
     delete temp;
-    length--;
+    this->length--;
 }
 
 void LinkedList::printList() const {
-    Node* temp = head;
+    Node* temp = this->head;
+    if (!temp) {
+        std::cout << "Empty List!\n";
+        return;
+    }
+
     while (temp != nullptr) {
-        std::cout << temp->value << std::endl;
+        std::cout << temp->value;
         temp = temp->next;
+        if (temp != nullptr) {
+            std::cout << " -> ";
+        }
     }
 }
 
-Node* LinkedList::getNode(const int&index) const {
-    if (index < 0 || index >= length) return nullptr;
-    Node* temp = head;
+Node* LinkedList::getNode(const int& index) const {
+    if (index < 0 || index >= this->length) return nullptr;
+
+    Node* temp = this->head;
+
     for (int i = 0; i < index; i++) {
         temp = temp->next;
     }
+
     return temp;
 }
 
-void LinkedList::getHead() const {
-    if (head == nullptr) {
-        std::cout << "Head: nullptr" << std::endl;
-    }
-    else { std::cout << "Head: " << head->value << std::endl; }
+Node* LinkedList::getHead() const {
+    return this->head;
 }
 
-void LinkedList::getTail() const {
-    if (tail == nullptr) {
-        std::cout << "Tail: nullptr" << std::endl;
-    }
-    else { std::cout << "Tail: " << tail->value << std::endl; }
+Node* LinkedList::getTail() const {
+    return this->tail;
 }
 
-void LinkedList::getLength() const {
-    std::cout << "Length: " << length << std::endl;
+int LinkedList::getLength() const {
+    return this->length;
 }
 
 void LinkedList::reverse() {
-    Node* temp = head;
-    head = tail;
-    tail = temp;
+    Node* temp = this->head;
+    this->head = this->tail;
+    this->tail = temp;
 
     Node* prevNode = nullptr;
     Node* nextNode = temp->next;
@@ -201,10 +203,10 @@ void LinkedList::reverse() {
 }
 
 Node* LinkedList::findMiddleNode() const {
-    if(length == 0) return nullptr;
+    if(this->length == 0) return nullptr;
 
-    const int half = length / 2;
-    Node* temp = head;
+    const int half = this->length / 2;
+    Node* temp = this->head;
 
     for (int i = 0; i < half; ++i) {
         temp = temp->next;
@@ -213,8 +215,8 @@ Node* LinkedList::findMiddleNode() const {
 }
 
 Node* LinkedList::middle() const {
-    Node* slow = head;
-    Node* fast = head;
+    Node* slow = this->head;
+    Node* fast = this->head;
 
     if (slow == nullptr) return nullptr;
 
@@ -230,11 +232,11 @@ Node* LinkedList::middle() const {
 }
 
 bool LinkedList::hasLoop() const {
-    if (head == nullptr) return false;
-    if (head->next == nullptr) return false;
+    if (this->head == nullptr) return false;
+    if (this->head->next == nullptr) return false;
 
-    Node* slow = head;
-    Node* fast = head;
+    Node* slow = this->head;
+    Node* fast = this->head;
 
     while (fast != nullptr) {
         slow = slow->next;
