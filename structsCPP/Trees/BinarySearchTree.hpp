@@ -8,15 +8,26 @@
 
 #include "../Node/TreeNode.hpp"
 
+#include <iostream>
+
 class BinarySearchTree {
     TreeNode* root;
 public:
     BinarySearchTree();
+
     explicit BinarySearchTree(const int& value);
+
      ~BinarySearchTree();
+
     bool insert(const int& value);
+
     bool contains(const int& value) const;
+
     void deleteNode(const TreeNode* currentNode);
+
+    void print(const TreeNode* currentNode) const;
+
+    TreeNode* getRoot() const;
 };
 
 

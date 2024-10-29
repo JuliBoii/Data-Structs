@@ -3,11 +3,13 @@
 //
 
 #include <iostream>
+#include <string_view>
 #include "BinarySearchTree.hpp"
 
 int main() {
     BinarySearchTree* myBST = new BinarySearchTree();
 
+    std::cout << "Inserting 6 Nodes into empty BST...\n\n";
     myBST->insert(10);
     myBST->insert(93);
     myBST->insert(34);
@@ -15,8 +17,16 @@ int main() {
     myBST->insert(73);
     myBST->insert(13);
 
-    std::cout << "Does this tree contain -52: " << myBST->contains(-52) << '\n';
-    std::cout << "Does this tree contain 73: " << myBST->contains(73) << '\n';
+    std::string_view result = myBST->contains(-52) ? "True" : "False";
+    std::cout << "Does this tree contain -52: " << result << '\n';
 
+    result = myBST->contains(73) ? "True" : "False";
+    std::cout << "Does this tree contain 73: " << result  << '\n';
+
+    std::cout << "\nPrinting BST...\n";
+    myBST->print(myBST->getRoot());
+
+    delete myBST;
+    
     return 0;
 }

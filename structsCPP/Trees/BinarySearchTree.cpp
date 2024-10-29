@@ -71,3 +71,15 @@ void BinarySearchTree::deleteNode(const TreeNode* currentNode) {
     this->deleteNode(currentNode->right);
     delete currentNode;
 }
+
+void BinarySearchTree::print(const TreeNode* currentNode) const {
+    if (!currentNode) { return; }
+    std::cout << currentNode->value << '\n';
+    this->print(currentNode->left);
+    this->print(currentNode->right);
+}
+
+TreeNode* BinarySearchTree::getRoot() const {
+    if (!this->root) { return nullptr; }
+    return this->root;
+}
