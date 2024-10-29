@@ -11,30 +11,27 @@ BinarySearchTree::BinarySearchTree() {
 
 BinarySearchTree::BinarySearchTree(const int &value) {
     TreeNode* newNode = new TreeNode(value);
-    root = newNode;
+    this->root = newNode;
 }
 
-// BinarySearchTree::~BinarySearchTree() {
-//     TreeNode* temp = root;
-//     while (temp) {
-//
-//     }
-// }
+ BinarySearchTree::~BinarySearchTree() {
+     this->deleteNode(this->root);
+ }
 
-
-bool BinarySearchTree::insert(const int &value) {
+bool BinarySearchTree::insert(const int& value) {
     TreeNode* newNode = new TreeNode(value);
-    if (root == nullptr) {
-        root = newNode;
+
+    if (this->root == nullptr) {
+        this->root = newNode;
         return true;
     }
 
-    TreeNode* temp = root;
+    TreeNode* temp = this->root;
     while (temp) {
         if (newNode->value == temp->value) {
             return false;
         }
-        if (newNode->value < temp->value) {
+        else if (newNode->value < temp->value) {
             if (!temp->left) {
                 temp->left = newNode;
                 return true;
@@ -53,7 +50,9 @@ bool BinarySearchTree::insert(const int &value) {
 }
 
 bool BinarySearchTree::contains(const int &value) const {
-    TreeNode* temp = root;
+    if (this->root == nullptr) { return false; }
+
+    TreeNode* temp = this->root;
     while (temp) {
         if (value < temp->value) {
             temp = temp->left;
@@ -66,3 +65,9 @@ bool BinarySearchTree::contains(const int &value) const {
     return false;
 }
 
+void BinarySearchTree::deleteNode(const TreeNode* currentNode) {
+    if (currentNode == nullptr) { return; }
+    this->deleteNode(currentNode->left);
+    this->deleteNode(currentNode->right);
+    delete currentNode;
+}

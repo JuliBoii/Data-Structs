@@ -13,9 +13,10 @@ class BinarySearchTree {
 public:
     BinarySearchTree();
     explicit BinarySearchTree(const int& value);
-    // ~BinarySearchTree();
+     ~BinarySearchTree();
     bool insert(const int& value);
     bool contains(const int& value) const;
+    void deleteNode(const TreeNode* currentNode);
 };
 
 
