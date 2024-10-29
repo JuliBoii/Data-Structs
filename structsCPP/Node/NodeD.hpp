@@ -13,9 +13,7 @@ public:
     Node_D* next;
     Node_D* prev;
 
-    explicit Node_D(int v);
+    explicit Node_D(const int& value);
 };
-
-
 
 #endif //NODED_HPP

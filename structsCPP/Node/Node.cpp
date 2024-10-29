@@ -1,6 +1,6 @@
 #include "Node.h"
 
-Node::Node(int value) {
+Node::Node(const int& value) {
     this->value = value;
     next = nullptr;
 }

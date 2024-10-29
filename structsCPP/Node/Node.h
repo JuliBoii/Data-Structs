@@ -6,7 +6,7 @@ public:
     int value;
     Node *next;
 
-    explicit Node(int value);
+    explicit Node(const int& value);
 };
 
 #endif
