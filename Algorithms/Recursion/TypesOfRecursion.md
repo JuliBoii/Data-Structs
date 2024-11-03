@@ -106,3 +106,4 @@ func(const int& n) {
 ```
 
 - If the recursive function is **_calling itself more than once_**, then it is a Tree Recursion.
+- For any value of n it will have a call level of 2^(n+1) - 1

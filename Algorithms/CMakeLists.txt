@@ -7,3 +7,4 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(tailR Recursion/tailRecursion.cpp)
 add_executable(headR Recursion/headRecursion.cpp)
+add_executable(treeR Recursion/treeRecursion.cpp)
