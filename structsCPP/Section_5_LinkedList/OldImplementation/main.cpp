@@ -28,7 +28,7 @@ int main() {
     myLinkedList->printList();
 
     std::cout << "\n\nRemoving a node from the end of list...\n";
-    myLinkedList->removeLast();
+    myLinkedList->removeTail();
     std::cout << "Removing a node from the beginning of list...\n";
     myLinkedList->removeFirst();
 
