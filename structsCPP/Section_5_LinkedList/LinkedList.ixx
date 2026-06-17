@@ -33,12 +33,11 @@ public:
     }
 
     void prepend(const int &value) {
-        std::unique_ptr<Node> newNode = std::make_unique<Node>(value);
-
         if (!head_) {
-            tail_ = newNode.get();
-            head_ = std::move(newNode);
+            head_ = std::make_unique<Node>(value);
+            tail_ = head_.get();
         } else {
+            std::unique_ptr<Node> newNode = std::make_unique<Node>(value);
             newNode->next = std::move(head_);
             head_ = std::move(newNode);
         }
