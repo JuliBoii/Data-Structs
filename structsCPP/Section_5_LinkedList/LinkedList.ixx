@@ -201,6 +201,11 @@ public:
         std::println("Length: {}", length_);
     }
 
+    size_t getLength() const // NOLINT(*-use-nodiscard)
+    {
+        return length_;
+    }
+
 private:
     std::unique_ptr<Node> head_{};
     Node *tail_{};
