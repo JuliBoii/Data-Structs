@@ -32,7 +32,6 @@ public:
         std::println("Deleted LinkedList");
     }
 
-
     void prepend(const int &value) {
         std::unique_ptr<Node> newNode = std::make_unique<Node>(value);
 
@@ -62,13 +61,14 @@ public:
             return;
         }
 
-        if (length_ == 1) {
+        if (length_ == 1) { // NOLINT(*-branch-clone)
             tail_ = nullptr;
             head_.reset();
             head_ = nullptr;
         } else {
             head_ = std::move(head_->next);
         }
+
         length_--;
     }
 
@@ -89,35 +89,77 @@ public:
                 temp = temp->next.get();
             }
 
+            std::unique_ptr<Node> tailToRemove = std::move(temp->next);
             tail_ = temp;
-            temp->next.reset();
             tail_->next = nullptr;
         }
 
         length_--;
     }
 
-    /*bool insert(const unsigned int &index, const int &value) {
-        if (index < 0 || index > length_) {
-            std::println("Index out of bounds");
-            return false;
-        }
-
+    bool insert(const size_t &index, const int &value) {
         if (index == 0) {
             this->prepend(value);
             return true;
         }
 
-        if (index == length_ - 1) {
+        if (index == length_) {
             this->append(value);
             return true;
         }
 
-        size_t count = 0;
 
-        while (count < index) {
+        if (Node *beforeIndexNode = this->getNode(index - 1)) {
+            std::unique_ptr<Node> newNode = std::make_unique<Node>(value);
+            newNode->next = std::move(beforeIndexNode->next);
+            beforeIndexNode->next = std::move(newNode);
+            length_++;
+            return true;
         }
-    }*/
+
+        /*size_t count = 0;
+        std::unique_ptr<Node> newNode = std::make_unique<Node>(value);
+        Node *temp = head_.get();
+
+        while (count < index - 1) {
+            temp = temp->next.get();
+            count++;
+        }
+
+        newNode->next = std::move(temp->next);
+        temp->next = std::move(newNode);
+        length_++;*/
+
+        return false;
+    }
+
+    bool setNode(const size_t &index, const int &value) const { // NOLINT(*-convert-member-functions-to-static, *-use-nodiscard)
+        if (Node *tempNode = this->getNode(index)) {
+            tempNode->value = value;
+            return true;
+        }
+
+        return false;
+    }
+
+    void removeNode(const size_t &index) { // NOLINT(*-convert-member-functions-to-static)
+        if (index == 0) {
+            return this->removeHead();
+        }
+
+        if (index == length_ - 1) {
+            return this->removeTail();
+        }
+
+        if (Node *beforeIndexNode = getNode(index - 1)) {
+            std::unique_ptr<Node> nodeToDelete = std::move(beforeIndexNode->next);
+            beforeIndexNode->next = std::move(nodeToDelete->next);
+            length_--;
+            return;
+        }
+        
+        std::println("Empty List or Invalid Index");
+    }
 
     void print() const { // NOLINT(*-convert-member-functions-to-static)
         std::println("Printing List:");
@@ -158,5 +200,24 @@ public:
 private:
     std::unique_ptr<Node> head_{};
     Node *tail_{};
-    int length_{};
+    size_t length_{};
+
+    Node *getNode(const size_t &index) const { // NOLINT(*-use-nodiscard)
+        if (index < 0 || index >= length_) {
+            return nullptr;
+        }
+
+        if (length_ == 0) {
+            return nullptr;
+        }
+
+        size_t count{0};
+        Node *temp = head_.get();
+
+        while (count < index) {
+            temp = temp->next.get();
+            count++;
+        }
+        return temp;
+    }
 };
