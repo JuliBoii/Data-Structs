@@ -175,10 +175,10 @@ public:
         }
 
         while (temp) {
-            std::println("{}", temp->value);
+            std::print("{} -> ", temp->value);
             temp = temp->next.get();
         }
-        std::println("");
+        std::println("nullptr\n");
     }
 
     void printHead() const { // NOLINT(*-convert-member-functions-to-static)
