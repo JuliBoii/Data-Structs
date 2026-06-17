@@ -29,7 +29,7 @@ public:
             }
             tail_ = nullptr;
         }
-        std::println("Deleted LinkedList");
+        std::println("~LinkedList()");
     }
 
     void prepend(const int &value) {
@@ -47,11 +47,16 @@ public:
 
     void append(const int &value) {
         std::unique_ptr<Node> newNode = std::make_unique<Node>(value);
-        Node *rawNewNode = newNode.get();
 
-        (length_ == 0 ? head_ : tail_->next) = std::move(newNode);
-
-        tail_ = rawNewNode;
+        if (length_ == 0)
+        {
+            head_ = std::move(newNode);
+            tail_ = head_.get();
+        } else
+        {
+            tail_->next = std::move(newNode);
+            tail_ = tail_->next.get();
+        }
         length_++;
     }
 
@@ -61,7 +66,7 @@ public:
             return;
         }
 
-        if (length_ == 1) { // NOLINT(*-branch-clone)
+        if (length_ == 1) {
             tail_ = nullptr;
             head_.reset();
             head_ = nullptr;
