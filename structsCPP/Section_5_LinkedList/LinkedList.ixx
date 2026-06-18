@@ -121,19 +121,6 @@ public:
             return true;
         }
 
-        /*size_t count = 0;
-        std::unique_ptr<Node> newNode = std::make_unique<Node>(value);
-        Node *temp = head_.get();
-
-        while (count < index - 1) {
-            temp = temp->next.get();
-            count++;
-        }
-
-        newNode->next = std::move(temp->next);
-        temp->next = std::move(newNode);
-        length_++;*/
-
         return false;
     }
 
