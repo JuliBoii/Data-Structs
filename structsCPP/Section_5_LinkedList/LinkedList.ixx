@@ -25,9 +25,8 @@ public:
         } else {
             while (head_) {
                 std::println("Node Deleted");
-                head_ = std::exchange(head_->next, nullptr);
+                this->removeHead();
             }
-            tail_ = nullptr;
         }
         std::println("~LinkedList()");
     }
@@ -69,8 +68,8 @@ public:
             return;
         }
 
-        // Handles length_ == 1 & length_ > 1
-        head_ = std::move(head_->next);
+        auto nextNode = std::move(head_->next);
+        head_ = std::move(nextNode);
 
         if (!head_) {
             tail_ = nullptr;
