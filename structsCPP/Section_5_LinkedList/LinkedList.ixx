@@ -230,6 +230,33 @@ public:
         return slowNode;
     }
 
+    // Realistically this would never be applicable to this Linked List Implementation
+    // Due to the natural behavior of unique_ptr's, of sole ownership
+    // Just wanted to implement it to mirror my previous implementation
+    bool hasLoop() const // NOLINT(*-use-nodiscard)
+    {
+        if (!head_)
+        {
+            return false;
+        }
+
+        Node* slowNode = head_.get();
+        Node* fastNode = head_.get();
+
+        while (fastNode->next && fastNode->next->next)
+        {
+            slowNode = slowNode->next.get();
+            fastNode = fastNode->next->next.get();
+
+            if (slowNode == fastNode)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 private:
     std::unique_ptr<Node> head_{};
     Node *tail_{};
