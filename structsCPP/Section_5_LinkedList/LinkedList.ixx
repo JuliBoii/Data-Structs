@@ -25,7 +25,7 @@ public:
         } else {
             while (head_) {
                 std::println("Node Deleted");
-                head_ = std::move(head_->next);
+                head_ = std::exchange(head_->next, nullptr);
             }
             tail_ = nullptr;
         }
@@ -200,8 +200,7 @@ public:
         tail_ = head_.get();
 
         while (head_) {
-            std::unique_ptr<Node> currentNode = std::move(head_);
-            head_ = std::move(currentNode->next);
+            std::unique_ptr<Node> currentNode = std::exchange(head_, std::move(head_->next));
             currentNode->next = std::move(reversed_head);
             reversed_head = std::move(currentNode);
         }
