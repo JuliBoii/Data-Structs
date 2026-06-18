@@ -33,14 +33,20 @@ public:
     }
 
     void prepend(const int &value) {
-        if (!head_) {
-            head_ = std::make_unique<Node>(value);
-            tail_ = head_.get();
-        } else {
-            auto newNode = std::make_unique<Node>(value);
-            newNode->next = std::move(head_);
-            head_ = std::move(newNode);
-        }
+        auto newNode = std::make_unique<Node>(value);
+        Node *rawNewNode = newNode.get();
+
+        // Sets next to current head_
+        // if length == 0, next will still be nullptr
+        newNode->next = std::move(head_);
+
+        // Set head_ to the new Node
+        head_ = std::move(newNode);
+
+        // If length == 0 (empty list), set tail_ to new Node
+        // else tail_ remains unchanged
+        tail_ = (length_ == 0 ? rawNewNode : tail_);
+
         length_++;
     }
 
