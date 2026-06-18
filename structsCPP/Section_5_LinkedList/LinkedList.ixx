@@ -49,11 +49,17 @@ public:
 
     void append(const int &value) {
         auto newNode = std::make_unique<Node>(value);
-        Node *rawNewNode = newNode.get();
 
-        (length_ == 0 ? head_ : tail_->next) = std::move(newNode);
+        if (length_ == 0)
+        {
+            head_ = std::move(newNode);
+            tail_ = head_.get();
+        } else
+        {
+            tail_->next = std::move(newNode);
+            tail_ = tail_->next.get();
+        }
 
-        tail_ = rawNewNode;
         length_++;
     }
 
