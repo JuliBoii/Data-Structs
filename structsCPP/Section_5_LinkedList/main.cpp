@@ -88,6 +88,13 @@ int main() {
     myList->printLength();
     myList->print();
 
+    std::println("Reversing Order of List");
+    myList->reverse();
+    myList->printHead();
+    myList->printTail();
+    myList->printLength();
+    myList->print();
+
     std::println("Removing a node at index 0");
     myList->removeNode(0);
     myList->printHead();

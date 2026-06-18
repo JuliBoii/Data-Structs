@@ -193,6 +193,22 @@ public:
         return length_;
     }
 
+    // Challenge Methods
+
+    void reverse() { // NOLINT(*-convert-member-functions-to-static)
+        std::unique_ptr<Node> reversed_head = nullptr;
+        tail_ = head_.get();
+
+        while (head_) {
+            std::unique_ptr<Node> currentNode = std::move(head_);
+            head_ = std::move(currentNode->next);
+            currentNode->next = std::move(reversed_head);
+            reversed_head = std::move(currentNode);
+        }
+
+        head_ = std::move(reversed_head);
+    }
+
 private:
     std::unique_ptr<Node> head_{};
     Node *tail_{};
