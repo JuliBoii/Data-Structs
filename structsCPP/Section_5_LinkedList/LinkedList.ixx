@@ -211,6 +211,25 @@ public:
         head_ = std::move(reversed_head);
     }
 
+    Node* getMiddleNode() const // NOLINT(*-use-nodiscard)
+    {
+        if (!head_)
+        {
+            return nullptr;
+        }
+
+        Node* slowNode = head_.get();
+        const Node* fastNode = head_.get();
+
+        while (fastNode->next && fastNode->next->next)
+        {
+            slowNode = slowNode->next.get();
+            fastNode = fastNode->next->next.get();
+        }
+
+        return slowNode;
+    }
+
 private:
     std::unique_ptr<Node> head_{};
     Node *tail_{};

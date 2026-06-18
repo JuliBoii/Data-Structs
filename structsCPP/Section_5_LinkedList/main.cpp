@@ -2,6 +2,7 @@
 #include <memory>
 
 import LinkedList;
+import Node;
 
 int main() {
     std::unique_ptr<LinkedList> myList = std::make_unique<LinkedList>(4);
@@ -88,6 +89,10 @@ int main() {
     myList->printLength();
     myList->print();
 
+    std::println("Getting Node in the Middle of List");
+    auto result = myList->getMiddleNode();
+    std::println("{}\n", result->value);
+
     std::println("Reversing Order of List");
     myList->reverse();
     myList->printHead();
@@ -108,6 +113,11 @@ int main() {
     myList->printTail();
     myList->printLength();
     myList->print();
+
+    std::println("Getting Node in the Middle of List");
+    result = myList->getMiddleNode();
+    std::println("{}\n", result->value);
+
 
     return 0;
 }
