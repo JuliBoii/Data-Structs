@@ -34,7 +34,6 @@ public:
 
     void prepend(const int &value) {
         auto newNode = std::make_unique<Node>(value);
-        Node *rawNewNode = newNode.get();
 
         // Sets next to current head_
         // if length == 0, next will still be nullptr
@@ -43,9 +42,7 @@ public:
         // Set head_ to the new Node
         head_ = std::move(newNode);
 
-        // If length == 0 (empty list), set tail_ to new Node
-        // else tail_ remains unchanged
-        tail_ = (length_ == 0 ? rawNewNode : tail_);
+        if (length_ == 0) {tail_ = head_.get();}
 
         length_++;
     }
