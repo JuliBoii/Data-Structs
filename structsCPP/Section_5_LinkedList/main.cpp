@@ -50,6 +50,20 @@ int main() {
     myList->printLength();
     myList->print();
 
+    std::println("Removing node from front");
+    myList->removeHead();
+    myList->printHead();
+    myList->printTail();
+    myList->printLength();
+    myList->print();
+
+    std::println("Removing node from front");
+    myList->removeHead();
+    myList->printHead();
+    myList->printTail();
+    myList->printLength();
+    myList->print();
+
     std::println("Appending three nodes");
     myList->append(421);
     myList->append(42);
@@ -80,7 +94,7 @@ int main() {
     myList->printTail();
     myList->printLength();
     myList->print();
-    
+
     std::println("Removing a node at index 2");
     myList->removeNode(2);
     myList->printHead();
