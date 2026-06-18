@@ -37,7 +37,7 @@ public:
             head_ = std::make_unique<Node>(value);
             tail_ = head_.get();
         } else {
-            std::unique_ptr<Node> newNode = std::make_unique<Node>(value);
+            auto newNode = std::make_unique<Node>(value);
             newNode->next = std::move(head_);
             head_ = std::move(newNode);
         }
@@ -45,17 +45,12 @@ public:
     }
 
     void append(const int &value) {
-        std::unique_ptr<Node> newNode = std::make_unique<Node>(value);
+        auto newNode = std::make_unique<Node>(value);
+        Node *rawNewNode = newNode.get();
 
-        if (length_ == 0)
-        {
-            head_ = std::move(newNode);
-            tail_ = head_.get();
-        } else
-        {
-            tail_->next = std::move(newNode);
-            tail_ = tail_->next.get();
-        }
+        (length_ == 0 ? head_ : tail_->next) = std::move(newNode);
+
+        tail_ = rawNewNode;
         length_++;
     }
 
@@ -65,12 +60,11 @@ public:
             return;
         }
 
-        if (length_ == 1) {
+        // Handles length_ == 1 & length_ > 1
+        head_ = std::move(head_->next);
+
+        if (!head_) {
             tail_ = nullptr;
-            head_.reset();
-            head_ = nullptr;
-        } else {
-            head_ = std::move(head_->next);
         }
 
         length_--;
@@ -161,7 +155,7 @@ public:
             length_--;
             return;
         }
-        
+
         std::println("Empty List or Invalid Index");
     }
 
